@@ -1,10 +1,19 @@
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
 }
 
-textarea{
+textarea {
+  resize: none;
   background: transparent;
   border: none;
   resize: none;
@@ -13,13 +22,54 @@ textarea{
   padding: 10px;
 }
 
-.jumbotron {
-  text-align: center;
-  background-color: transparent;
-  color: black;
-  border-radius: 0;
-  border-bottom: 10px solid black;
+.past-hour {
+  background-color: rgb(189, 189, 189);
+  border-color: gray;
 }
+
+.present-hour {
+  background-color: crimson;
+  border-color: crimson;  
+}
+
+.future-hour {
+  background-color: rgb(90, 177, 90);
+  border-color: rgb(41, 136, 41);
+}
+
+button {
+  background-color: darkturquoise;
+  border-radius: 0px 5px 5px 0px;
+}
+
+header {
+  border-bottom-width: 10px;
+  text-color: red;
+}
+
+button {
+  font-size: 2em;
+}
+
+.saveBtn {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #06AED5;
+  color: white;
+}
+
+.saveBtn i:hover {
+  font-size: 20px;
+  transition: all .3s ease-in-out;
+}
+
+/*
+
+textarea{
+
+
+
 
 .description{
   white-space: pre-wrap;
@@ -48,8 +98,7 @@ textarea{
 }
 
 .present {
-  background-color: #ff6961;
-  color: white;
+
 }
 
 .future {
@@ -57,15 +106,5 @@ textarea{
   color: white;
 }
 
-.saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06AED5;
-  color: white;
-}
 
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all .3s ease-in-out;
-}
+ */
