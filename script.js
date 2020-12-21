@@ -69,18 +69,22 @@ function militaryTime(hourString) {
       return 17;
   }
 }
+
+//This function loads the correct data set and returns the result based on the hour.
+function loadCorrectDataset() {
+  var result = localStorage.getItem("workingHours");
+  return result ? result : workingHours;
+}
+
+//This function initializes local storage based on the hour.
 function initializeLocalStorage() {
   localStorage.setItem("workingHours", JSON.stringify(workingHours));
 }
 
+//This function saves data to local storage.
 function saveToLocalStorage(dayObj) {
   localStorage.setItem("workingHours", JSON.stringify(dayObj));
 }
-
-function saveSchedule(hourString, val) {
-  if (!localStorage.getItem("workingHours")) {
-    initializeLocalStorage();
-  }
 
   /*  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
   const object = { a: 1, b: 2, c: 3 };
