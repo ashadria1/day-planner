@@ -5,10 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <!-- fontawesome CSS styling -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <!-- Google API CSS styling -->    
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <!-- My own CSS styling -->
   <link rel="stylesheet" href="style.css" />
   <title>Work Day Scheduler</title>
 
@@ -29,14 +33,14 @@
   </header>
 
   <div class="container">
-    <!-- Timeblocks go here -->
+    <!-- Timeblocks go here.  Each row represents an hour, and therefore gets its own div with three components.  Each row gets 1) a 1/12th grid column for its name based on its hour, 2) a 10/12th grid column for its textarea for entering up to three rows of text, and 3) a 1/12th grid column for a button that users can click to save info entered in the textarea field to local storage.  The save button displays a favicon from https://fontawesome.com/icons/save, hence the fontawesome stylesheet in the head. -->
 
     <!--Row 1 - 9AM-->
     <div id="calendar-row1" class="row justify-content-md-center border-top border-bottom calendar-row">
       <div id="time1" class="col-md-1">9 AM</div>
       <textarea id="text-entry1" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -45,7 +49,7 @@
       <div id="time2" class="col-lg-1">10 AM</div>
       <textarea id="text-entry2" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -54,7 +58,7 @@
       <div id="time3" class="col-lg-1">11 AM</div>
       <textarea id="text-entry3" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -63,7 +67,7 @@
       <div id="time4" class="col-lg-1">12 PM</div>
       <textarea id="text-entry4" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -72,7 +76,7 @@
       <div id="time5" class="col-lg-1">1 PM</div>
       <textarea id="text-entry5" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -81,7 +85,7 @@
       <div id="time6" class="col-lg-1">2 PM</div>
       <textarea id="text-entry6" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -90,7 +94,7 @@
       <div id="time7" class="col-lg-1">3 PM</div>
       <textarea id="text-entry7" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -99,7 +103,7 @@
       <div id="time8" class="col-lg-1">4 PM</div>
       <textarea id="text-entry8" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
 
@@ -108,7 +112,7 @@
       <div id="time9" class="col-lg-1">5 PM</div>
       <textarea id="text-entry9" rows="3" class="col-md-10"></textarea>
       <button id="save" class="col-md-1 btn btn-block saveBtn">
-        <i class="far fa-save"></i>
+        <i class="fas fa-save"></i>
       </button>
     </div>
   </div>
