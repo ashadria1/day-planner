@@ -11,7 +11,7 @@ let workingHours = {
   "5 PM": "",
 };
 
-//Once the DOM is ready to be manipulated, this if-else statement runs to get items in local storage if they were previously saved.
+/* Once the DOM is ready to be manipulated, this if-else statement runs to get items based on the hour in local storage if they were previously saved. */
 $(document).ready(function () {
   if (!localStorage.getItem("workingHours")) {
     refreshDayPlans(workingHours);
@@ -20,12 +20,12 @@ $(document).ready(function () {
   }
 });
 
-//This pulls the date and time from moment and formats it in h6 header in the Jumbotron.
+//This pulls the date and time from moment and displays it in h6 header in the Jumbotron.
 $("#date-today h6").text(
   moment().format("dddd") + ", " + moment().format("MMMM Do YYYY")
 );
 
-//This logic determines if the hour in question is a past, present, or future hour based on moment data, and assigns a class that will be used in CSS styling to determine colors for past, present, and future hours.
+/*This for loop contains the logic that determines if the hour in question is a past, present, or future hour based on moment data, and assigns a class that will be used in CSS styling to determine colors for past, present, and future hours. */
 let counter = 1;
 for (const property in workingHours) {
   let textEntry = "#text-entry" + counter;
@@ -44,10 +44,7 @@ for (const property in workingHours) {
   counter++;
 }
 
-let workHours = JSON.parse(localStorage.getItem("workingHours"));
-workHours[hourString] = val;
-
-//This function saves whatever is input in the text area in local storage when the "save" button is clicked.
+/* This function saves whatever is input in the text area in local storage when the "save" button is clicked. */
 $("button").click(function () {
   value = $(this).siblings("textarea").val();
   hourString = $(this).siblings("div").text();
@@ -94,10 +91,20 @@ function saveToLocalStorage(dayObj) {
   localStorage.setItem("workingHours", JSON.stringify(dayObj));
 }
 
-/*  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
-  const object = { a: 1, b: 2, c: 3 };
-
-for (const property in object) {
-  console.log(`${property}: ${object[property]}`);
+//This function parses the data received so that it can be saved as a string in local storage.
+function saveSchedule(hourString, val) {
+  if (!localStorage.getItem("workingHours")) {
+    initializeLocalStorage();
+  }
+  let workHours = JSON.parse(localStorage.getItem("workingHours"));
+  workHours[hourString] = val;
+  saveToLocalStorage(workHours);
 }
-  */
+
+//This function refreshes the saved data in local storage.
+function refreshDayPlans(dayObject) {
+  $(".calendar-row").each(function (index) {
+    let res = $(this).children("div");
+    $(this).children("textarea").text(dayObject[res.text()]);
+  });
+}
