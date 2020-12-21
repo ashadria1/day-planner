@@ -1,3 +1,4 @@
+//"let" works better than "var" for these purposes
 let workingHours = {
   "9 AM": "",
   "10 AM": "",
@@ -10,6 +11,17 @@ let workingHours = {
   "5 PM": "",
 };
 
+//Once the DOM is ready to be manipulated, this if-else statement runs to get items in local storage if they were previously saved.
+$(document).ready(function () {
+  if (!localStorage.getItem("workingHours")) {
+    refreshDayPlans(workingHours);
+  } else {
+    refreshDayPlans(JSON.parse(localStorage.getItem("workingHours")));
+  }
+});
+
+
+
 let counter = 1;
 let timeId = "#time" + counter;
 let presentHour = moment().hour();
@@ -19,8 +31,20 @@ let timeString = $(timeId).text();
 let workHours = JSON.parse(localStorage.getItem("workingHours"));
 workHours[hourString] = val;
 
+
+
+//Once the DOM is ready to be manipulated, this if-else statement runs to get items in local storage if they were previously saved.
+$(document).ready(function () {
+  if (!localStorage.getItem("workingHours")) {
+    refreshDayPlans(workingHours);
+  } else {
+    refreshDayPlans(JSON.parse(localStorage.getItem("workingHours")));
+  }
+});
+
+//This pulls the date and time from moment and displays it in h6 header in the Jumbotron
 $("#date-today h6").text(
-  moment().format("dddd") + ", " + moment().format("MMMM Do YYYY, h:mm:ss a")
+  moment().format("dddd") + ", " + moment().format("MMMM Do YYYY")
 );
 
 function militaryTime(hourString) {
@@ -45,16 +69,24 @@ function militaryTime(hourString) {
       return 17;
   }
 }
-
-$(document).ready(function () {
-  if (!localStorage.getItem("workingHours")) {
-    refreshDayPlans(workingHours);
-  } else {
-    refreshDayPlans(JSON.parse(localStorage.getItem("workingHours")));
-  }
-});
-
 function initializeLocalStorage() {
   localStorage.setItem("workingHours", JSON.stringify(workingHours));
 }
+
+function saveToLocalStorage(dayObj) {
+  localStorage.setItem("workingHours", JSON.stringify(dayObj));
+}
+
+function saveSchedule(hourString, val) {
+  if (!localStorage.getItem("workingHours")) {
+    initializeLocalStorage();
+  }
+
+  /*  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+  const object = { a: 1, b: 2, c: 3 };
+
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+  */
 
