@@ -20,33 +20,41 @@ $(document).ready(function () {
   }
 });
 
-
-
-let counter = 1;
-let timeId = "#time" + counter;
-let presentHour = moment().hour();
-let pastHour = moment().hour() - 1;
-let futureHour = moment().hour + 1;
-let timeString = $(timeId).text();
-let workHours = JSON.parse(localStorage.getItem("workingHours"));
-workHours[hourString] = val;
-
-
-
-//Once the DOM is ready to be manipulated, this if-else statement runs to get items in local storage if they were previously saved.
-$(document).ready(function () {
-  if (!localStorage.getItem("workingHours")) {
-    refreshDayPlans(workingHours);
-  } else {
-    refreshDayPlans(JSON.parse(localStorage.getItem("workingHours")));
-  }
-});
-
-//This pulls the date and time from moment and displays it in h6 header in the Jumbotron
+//This pulls the date and time from moment and formats it in h6 header in the Jumbotron.
 $("#date-today h6").text(
   moment().format("dddd") + ", " + moment().format("MMMM Do YYYY")
 );
 
+//This logic determines if the hour in question is a past, present, or future hour based on moment data, and assigns a class that will be used in CSS styling to determine colors for past, present, and future hours.
+let counter = 1;
+for (const property in workingHours) {
+  let textEntry = "#text-entry" + counter;
+  $(textEntry).text(workingHours[property]);
+  let timeId = "#time" + counter;
+  let presentHour = moment().hour();
+  let timeString = $(timeId).text();
+  let timeNumber = militaryTime(timeString);
+  if (timeNumber < presentHour) {
+    $(textEntry).addClass("past-hour");
+  } else if (timeNumber > presentHour) {
+    $(textEntry).addClass("future-hour");
+  } else {
+    $(textEntry).addClass("present-hour");
+  }
+  counter++;
+}
+
+let workHours = JSON.parse(localStorage.getItem("workingHours"));
+workHours[hourString] = val;
+
+//This function saves whatever is input in the text area in local storage when the "save" button is clicked.
+$("button").click(function () {
+  value = $(this).siblings("textarea").val();
+  hourString = $(this).siblings("div").text();
+  saveSchedule(hourString, value);
+});
+
+//This function switches 12-hour time to 24-hour time so moment can use it.
 function militaryTime(hourString) {
   switch (hourString) {
     case "9 AM":
@@ -86,11 +94,10 @@ function saveToLocalStorage(dayObj) {
   localStorage.setItem("workingHours", JSON.stringify(dayObj));
 }
 
-  /*  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+/*  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
   const object = { a: 1, b: 2, c: 3 };
 
 for (const property in object) {
   console.log(`${property}: ${object[property]}`);
 }
   */
-
